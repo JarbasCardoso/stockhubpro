@@ -1,0 +1,80 @@
+<div class="d-flex flex-column min-vh-100 bg-light">
+
+  <!-- MODAL SUCESSO -->
+  @if (mostrarSucesso) {
+  <div class="alert alert-success d-flex align-items-center position-fixed top-0 end-0 m-3" style="z-index:9999; min-width:300px;">
+    <span class="me-2">✔</span>
+    <strong>Novo usuário cadastrado com sucesso!</strong>
+    <button class="btn-close ms-auto" (click)="fecharSucesso()"></button>
+  </div>
+  }
+
+  <!-- MODAL ERRO CNPJ -->
+  @if (mostrarErroCnpj) {
+  <div class="alert alert-danger d-flex align-items-center position-fixed top-0 end-0 m-3" style="z-index:9999; min-width:300px;">
+    <span class="me-2">✖</span>
+    <div>
+      <strong>Tente novamente!</strong><br>
+      O CNPJ tem que ter 14 números. Digite apenas os números.
+    </div>
+    <button class="btn-close ms-auto" (click)="fecharErroCnpj()"></button>
+  </div>
+  }
+
+  <!-- CARD CADASTRO -->
+  <div class="flex-grow-1 d-flex align-items-center justify-content-center py-4">
+    <div class="card p-4 shadow" style="width:100%; max-width:500px; border:2px solid #4a90d9;">
+      <h4 class="text-center mb-4">Cadastrar Usuário</h4>
+
+      <div class="mb-3">
+        <label class="form-label">Nome da empresa</label>
+        <input type="text" class="form-control" [(ngModel)]="nomeEmpresa">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">CNPJ*</label>
+        <input type="text" class="form-control" [(ngModel)]="cnpj" maxlength="14">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Nome do usuário</label>
+        <input type="text" class="form-control" [(ngModel)]="nomeUsuario">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">E-mail</label>
+        <input type="email" class="form-control" [(ngModel)]="email">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">CPF*</label>
+        <input type="text" class="form-control" placeholder="Digite apenas os números, sem pontos nem traço" [(ngModel)]="cpf" maxlength="11">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Senha</label>
+        <div class="input-group">
+          <input [type]="mostrarSenha ? 'text' : 'password'" class="form-control" [(ngModel)]="senha">
+          <button class="btn btn-outline-secondary" (click)="toggleSenha()">👁</button>
+        </div>
+        <small class="text-muted">(Deve conter 8 caracteres, com pelo menos uma letra maiúscula)</small>
+      </div>
+
+      <div class="mb-4">
+        <label class="form-label">Confirmar senha*</label>
+        <div class="input-group">
+          <input [type]="mostrarConfirmar ? 'text' : 'password'" class="form-control" [(ngModel)]="confirmarSenha">
+          <button class="btn btn-outline-secondary" (click)="toggleConfirmar()">👁</button>
+        </div>
+      </div>
+
+      <button class="btn btn-primary w-100 mb-3" (click)="cadastrar()">CADASTRAR</button>
+
+      <div class="text-center">
+        <a href="#" (click)="irLogin()">Fazer login</a>
+      </div>
+    </div>
+  </div>
+
+  <app-footer />
+</div>

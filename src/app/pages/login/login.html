@@ -1,0 +1,45 @@
+<div class="d-flex flex-column min-vh-100 bg-light">
+
+  @if (mostrarErro) {
+  <div class="alert alert-danger d-flex align-items-center position-fixed top-0 end-0 m-3" style="z-index:9999; min-width:300px;">
+    <span class="me-2">✖</span>
+    <div>
+      <strong>Tente novamente!</strong><br>
+      CPF ou Senha inválidos.
+    </div>
+    <button class="btn-close ms-auto" (click)="fecharErro()"></button>
+  </div>
+  }
+
+  <div class="flex-grow-1 d-flex align-items-center justify-content-center">
+    <div class="card p-4 shadow" style="width:100%; max-width:450px; border:2px solid #4a90d9;">
+      <h4 class="text-center mb-4">Autenticação do Usuário</h4>
+
+      <div class="mb-3">
+        <label class="form-label">CPF</label>
+        <input type="text" class="form-control" placeholder="Digite apenas os números, sem pontos nem traço" [(ngModel)]="cpf" maxlength="11">
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Senha</label>
+        <div class="input-group">
+          <input [type]="mostrarSenha ? 'text' : 'password'" class="form-control" [(ngModel)]="senha">
+          <button class="btn btn-outline-secondary" (click)="toggleSenha()">👁</button>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary w-100 mb-3" (click)="entrar()">ENTRAR</button>
+
+      <div class="text-center mb-3">
+        <a href="#" (click)="$event.preventDefault(); irEsqueci()">Esqueci minha senha</a>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <a href="#" class="text-danger" (click)="$event.preventDefault(); cancelar()">Cancelar</a>
+        <span>Primeiro acesso? <a href="#" (click)="$event.preventDefault(); irCadastro()">Cadastre-se</a></span>
+      </div>
+    </div>
+  </div>
+
+  <app-footer />
+</div>

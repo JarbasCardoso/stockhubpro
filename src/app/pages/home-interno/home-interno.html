@@ -1,0 +1,56 @@
+<div class="d-flex flex-column min-vh-100 bg-light">
+
+  <!-- MODAL PERFIL -->
+  @if (mostrarPerfil) {
+  <div class="position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center" style="z-index:9999; background:rgba(0,0,0,0.5);">
+    <div class="card p-4" style="min-width:320px;">
+      <div class="d-flex justify-content-between align-items-center mb-3" style="background:#4a90d9; margin:-24px -24px 16px -24px; padding:12px 16px; border-radius:8px 8px 0 0;">
+        <strong class="text-white">Perfil do administrador</strong>
+        <button class="btn-close btn-close-white" (click)="fecharPerfil()"></button>
+      </div>
+      <p><strong>Empresa:</strong> {{ empresa }}</p>
+      <p><strong>Nome:</strong> {{ nome }}</p>
+      <p><strong>CPF:</strong> {{ cpf }}</p>
+      <p><strong>E-mail:</strong> {{ email }}</p>
+    </div>
+  </div>
+  }
+
+  <!-- HEADER -->
+  <header class="border-bottom py-2 px-4 d-flex align-items-center justify-content-between bg-white">
+    <div class="d-flex align-items-center gap-2">
+      <img src="assets/logo.png" height="40" alt="logo" onerror="this.style.display='none'">
+      <h5 class="text-primary fw-bold mb-0">StockHub Pro</h5>
+    </div>
+    <div class="d-flex gap-2">
+      <button class="btn btn-outline-primary btn-sm" (click)="abrirPerfil()">Ver Perfil</button>
+      <button class="btn btn-outline-danger btn-sm" (click)="sair()">Sair</button>
+    </div>
+  </header>
+
+  <!-- CONTEÚDO -->
+  <div class="flex-grow-1 container py-4">
+
+    <h4 class="text-center mb-1">Bem-vindo, "{{ nome }}"!</h4>
+    <p class="text-center text-muted mb-4">Navegue pelo sistema por esta página.</p>
+
+    <div class="d-flex justify-content-center gap-3 flex-wrap mb-5">
+      <button class="btn btn-outline-dark" (click)="irRelatorio()">Gerar relatório</button>
+      <button class="btn btn-outline-dark" (click)="irCadastrarItem()">Cadastrar Item</button>
+      <button class="btn btn-outline-dark" (click)="irSaidaItem()">Registrar Saída</button>
+      <button class="btn btn-outline-dark" (click)="irEstoque()">Ver estoque</button>
+    </div>
+
+    <div class="card border mx-auto" style="max-width:500px; border-color:#4a90d9 !important;">
+      <div class="card-header text-center fw-bold text-white" style="background:#4a90d9;">ESTOQUE EM TEMPO REAL</div>
+      <div class="card-body">
+        <div class="border rounded p-2 mb-2 text-center">Total de itens: {{ totalItens }}</div>
+        <div class="border rounded p-2 mb-2 text-center">Total de entradas: {{ totalEntradas }}</div>
+        <div class="border rounded p-2 text-center">Total de saídas: {{ totalSaidas }}</div>
+      </div>
+    </div>
+
+  </div>
+
+  <app-footer />
+</div>
