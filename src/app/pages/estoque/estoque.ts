@@ -20,27 +20,22 @@ export class Estoque {
   mostrarQtdMinima = false;
   itemQtdMinima = '';
 
-  itens = [
-    { nome: 'Produto A', codigo: '001', categoria: 'Eletrônicos', qtdAtual: 5, qtdMinima: 10 },
-    { nome: 'Produto B', codigo: '002', categoria: 'Informática', qtdAtual: 20, qtdMinima: 5 },
-    { nome: 'Produto C', codigo: '003', categoria: 'Papelaria', qtdAtual: 3, qtdMinima: 8 },
-  ];
-
   get itensFiltrados() {
-    return this.itens.filter(i =>
-      i.nome.toLowerCase().includes(this.busca.toLowerCase())
-    );
+  return this.estoqueService.getItens().filter(i =>
+    i.nome.toLowerCase().includes(this.busca.toLowerCase())
+  );
   }
 
+ 
   get totalItens() {
-    return this.itens.reduce((acc, i) => acc + i.qtdAtual, 0);
-  }
+  return this.estoqueService.getItens().reduce((acc, i) => acc + i.qtdAtual, 0);
+ }
 
   excluir(index: number) {
-    const item = this.itensFiltrados[index];
-    this.itens = this.itens.filter(i => i.codigo !== item.codigo);
-    this.mostrarExcluido = true;
-  }
+  const item = this.itensFiltrados[index];
+  this.estoqueService.itens = this.estoqueService.itens.filter(i => i.codigo !== item.codigo);
+  this.mostrarExcluido = true;
+}
 
   editar(index: number) {
     this.mostrarEditado = true;
