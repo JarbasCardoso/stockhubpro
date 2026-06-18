@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
-import { Footer } from '../../shared/footer/footer'; 
+import { Footer } from '../../shared/footer/footer';
+import { EstoqueService } from '../../services/estoque';
 
 @Component({
   selector: 'app-cadastrar-item',
@@ -14,6 +15,7 @@ import { Footer } from '../../shared/footer/footer';
 export class CadastrarItem {
 
   private router = inject(Router);
+  private estoqueService = inject(EstoqueService);
 
   nome = '';
   codigo = '';
@@ -23,6 +25,13 @@ export class CadastrarItem {
 
   cadastrar() {
     if (this.nome && this.codigo && this.preco && this.qtdMinima) {
+      this.estoqueService.adicionarItem({
+        nome: this.nome,
+        codigo: this.codigo,
+        categoria: 'Geral',
+        qtdAtual: 0,
+        qtdMinima: Number(this.qtdMinima)
+      });
       this.sucesso = true;
       setTimeout(() => this.sucesso = false, 3000);
       this.apagar();

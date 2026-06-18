@@ -1,1 +1,41 @@
-<p>saida-item works!</p>
+<div class="d-flex flex-column min-vh-100 bg-light">
+  <div class="flex-grow-1 d-flex align-items-center justify-content-center">
+    <div class="card p-4" style="width: 100%; max-width: 500px; border: 2px solid #4a90d9">
+      <h4 class="text-center mb-4">Registrar Saída de Item</h4>
+
+      <div class="mb-3">
+        <label class="form-label">Código do Item</label>
+        <input
+          type="text"
+          class="form-control"
+          [(ngModel)]="codigo"
+          placeholder="Digite o código"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Quantidade</label>
+        <input
+          type="number"
+          class="form-control"
+          [(ngModel)]="quantidade"
+          placeholder="Digite a quantidade"
+        />
+      </div>
+
+      @if (sucesso) {
+        <div class="alert alert-success">Saída registrada com sucesso!</div>
+      }
+
+      @if (erro) {
+        <div class="alert alert-danger">Preencha todos os campos!</div>
+      }
+
+      <div class="d-flex gap-2 mt-3">
+        <button type="button" class="btn btn-primary w-100" (click)="registrar()">Registrar</button>
+        <button type="button" class="btn btn-secondary w-100" (click)="voltar()">Voltar</button>
+      </div>
+    </div>
+  </div>
+  <app-footer />
+</div>

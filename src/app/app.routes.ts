@@ -21,5 +21,5 @@ export const routes: Routes = [
   { path: 'saida-item', component: SaidaItem },
   { path: 'relatorio', component: Relatorio },
   { path: 'home-interno', component: HomeInterno },
-  { path: '**', redirectTo: '' }
+  { path: '**', redirectTo: 'home-interno' }
 ];

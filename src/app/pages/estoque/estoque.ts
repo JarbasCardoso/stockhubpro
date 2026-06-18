@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Footer } from '../../shared/footer/footer';
+import { EstoqueService } from '../../services/estoque';
 
 @Component({
   selector: 'app-estoque',
@@ -12,7 +13,7 @@ import { Footer } from '../../shared/footer/footer';
 })
 export class Estoque {
   private router = inject(Router);
-
+  private estoqueService = inject(EstoqueService);
   busca = '';
   mostrarExcluido = false;
   mostrarEditado = false;
