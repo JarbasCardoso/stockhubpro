@@ -2,7 +2,7 @@
 
   @if (mostrarErro) {
   <div class="alert alert-danger d-flex align-items-center position-fixed top-0 end-0 m-3" style="z-index:9999; min-width:300px;">
-    <span class="me-2">✖</span>
+    <span class="me-2"></span>
     <div>
       <strong>Tente novamente!</strong><br>
       CPF ou Senha inválidos.
@@ -24,7 +24,7 @@
         <label class="form-label">Senha</label>
         <div class="input-group">
           <input [type]="mostrarSenha ? 'text' : 'password'" class="form-control" [(ngModel)]="senha">
-          <button class="btn btn-outline-secondary" (click)="toggleSenha()">👁</button>
+          <button class="btn btn-outline-secondary" (click)="toggleSenha()"></button>
         </div>
       </div>
 

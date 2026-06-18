@@ -3,7 +3,7 @@
   <!-- MODAL SUCESSO -->
   @if (mostrarSucesso) {
   <div class="alert alert-success d-flex align-items-center position-fixed top-0 end-0 m-3" style="z-index:9999; min-width:300px;">
-    <span class="me-2">✔</span>
+    <span class="me-2"></span>
     <strong>Novo usuário cadastrado com sucesso!</strong>
     <button class="btn-close ms-auto" (click)="fecharSucesso()"></button>
   </div>
@@ -12,7 +12,7 @@
   <!-- MODAL ERRO CNPJ -->
   @if (mostrarErroCnpj) {
   <div class="alert alert-danger d-flex align-items-center position-fixed top-0 end-0 m-3" style="z-index:9999; min-width:300px;">
-    <span class="me-2">✖</span>
+    <span class="me-2"></span>
     <div>
       <strong>Tente novamente!</strong><br>
       O CNPJ tem que ter 14 números. Digite apenas os números.
@@ -55,7 +55,7 @@
         <label class="form-label">Senha</label>
         <div class="input-group">
           <input [type]="mostrarSenha ? 'text' : 'password'" class="form-control" [(ngModel)]="senha">
-          <button class="btn btn-outline-secondary" (click)="toggleSenha()">👁</button>
+          <button class="btn btn-outline-secondary" (click)="toggleSenha()"></button>
         </div>
         <small class="text-muted">(Deve conter 8 caracteres, com pelo menos uma letra maiúscula)</small>
       </div>
@@ -64,7 +64,7 @@
         <label class="form-label">Confirmar senha*</label>
         <div class="input-group">
           <input [type]="mostrarConfirmar ? 'text' : 'password'" class="form-control" [(ngModel)]="confirmarSenha">
-          <button class="btn btn-outline-secondary" (click)="toggleConfirmar()">👁</button>
+          <button class="btn btn-outline-secondary" (click)="toggleConfirmar()"></button>
         </div>
       </div>
 

@@ -2,7 +2,7 @@
 
   @if (mostrarExcluido) {
   <div class="alert alert-danger d-flex align-items-center position-fixed top-0 end-0 m-3" style="z-index:9999; min-width:300px;">
-    <span class="me-2">✖</span>
+    <span class="me-2"></span>
     <strong>Item excluído do estoque.</strong>
     <button class="btn-close ms-auto" (click)="mostrarExcluido=false"></button>
   </div>
@@ -10,7 +10,7 @@
 
   @if (mostrarEditado) {
   <div class="alert d-flex align-items-center position-fixed top-0 end-0 m-3" style="z-index:9999; min-width:300px; background-color:#ffd700;">
-    <span class="me-2">✔</span>
+    <span class="me-2"></span>
     <strong>Item editado com sucesso!</strong>
     <button class="btn-close ms-auto" (click)="mostrarEditado=false"></button>
   </div>
@@ -32,7 +32,7 @@
     </div>
 
     <div class="input-group mb-4" style="max-width:400px;">
-      <span class="input-group-text">🔍</span>
+      <span class="input-group-text"></span>
       <input type="text" class="form-control" placeholder="BUSCAR ITEM" [(ngModel)]="busca">
     </div>
 
@@ -46,8 +46,8 @@
         <p><strong>Quantidade Mínima:</strong> {{ item.qtdMinima }}</p>
       </div>
       <div class="card-footer d-flex justify-content-end gap-2">
-       <button class="btn btn-warning btn-sm" (click)="editar(i)">EDITAR ✏️</button>
-       <button class="btn btn-danger btn-sm" (click)="excluir(i)">EXCLUIR 🗑️</button>
+       <button class="btn btn-warning btn-sm" (click)="editar(i)">EDITAR </button>
+       <button class="btn btn-danger btn-sm" (click)="excluir(i)">EXCLUIR </button>
       </div>
     </div>
     }
