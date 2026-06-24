@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Footer } from '../../shared/footer/footer';
+import { AuthService } from '../../services/auth';
 
 @Component({
   selector: 'app-login',
@@ -12,20 +13,19 @@ import { Footer } from '../../shared/footer/footer';
 })
 export class LoginComponent {
   private router = inject(Router);
+  private authService = inject(AuthService);
   cpf = '';
   senha = '';
   mostrarSenha = false;
   mostrarErro = false;
 
- entrar() {
-  const cpfValido = this.cpf.length === 11;
-  const senhaValida = this.senha.length >= 8;
-  if (cpfValido && senhaValida) {
-    this.router.navigate(['/home-interno']);
-  } else {
-    this.mostrarErro = true;
+  entrar() {
+    if (this.authService.login(this.cpf, this.senha)) {
+      this.router.navigate(['/home-interno']);
+    } else {
+      this.mostrarErro = true;
+    }
   }
-}
 
   fecharErro() { this.mostrarErro = false; }
   toggleSenha() { this.mostrarSenha = !this.mostrarSenha; }

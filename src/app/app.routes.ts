@@ -9,6 +9,7 @@ import { CadastrarItem } from './pages/cadastrar-item/cadastrar-item';
 import { SaidaItem } from './pages/saida-item/saida-item';
 import { Relatorio } from './pages/relatorio/relatorio';
 import { HomeInterno } from './pages/home-interno/home-interno';
+import { authGuard } from './services/auth.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -16,10 +17,10 @@ export const routes: Routes = [
   { path: 'cadastro', component: Cadastro },
   { path: 'esqueci-senha', component: EsqueciSenha },
   { path: 'redefinir-senha', component: RedefinirSenha },
-  { path: 'estoque', component: Estoque },
-  { path: 'cadastrar-item', component: CadastrarItem },
-  { path: 'saida-item', component: SaidaItem },
-  { path: 'relatorio', component: Relatorio },
-  { path: 'home-interno', component: HomeInterno },
-  { path: '**', redirectTo: 'home-interno' }
+  { path: 'home-interno', component: HomeInterno, canActivate: [authGuard] },
+  { path: 'estoque', component: Estoque, canActivate: [authGuard] },
+  { path: 'cadastrar-item', component: CadastrarItem, canActivate: [authGuard] },
+  { path: 'saida-item', component: SaidaItem, canActivate: [authGuard] },
+  { path: 'relatorio', component: Relatorio, canActivate: [authGuard] },
+  { path: '**', redirectTo: 'login' }
 ];
