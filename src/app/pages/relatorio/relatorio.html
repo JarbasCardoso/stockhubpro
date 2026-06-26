@@ -3,23 +3,21 @@
     <h4 class="text-center mb-4">Relatório Mensal de Estoque</h4>
 
     <table class="table table-bordered table-striped">
-      <thead style="background-color: #4a90d9; color: white;">
-        <tr>
+      <thead>
           <th>Código</th>
           <th>Nome</th>
-          <th>Entradas</th>
-          <th>Saídas</th>
-          <th>Saldo</th>
-        </tr>
+          <th>Categoria</th>
+          <th>Qauntidade Atual</th>
+          <th>Qauntidade Mínima</th>
       </thead>
       <tbody>
         @for (item of itens; track item.codigo) {
           <tr>
             <td>{{ item.codigo }}</td>
             <td>{{ item.nome }}</td>
-            <td>{{ item.entradas }}</td>
-            <td>{{ item.saidas }}</td>
-            <td>{{ item.saldo }}</td>
+            <td>{{ item.categoria }}</td>
+            <td>{{ item.qtdAtual }}</td>
+            <td>{{ item.qtdMinima }}</td>
           </tr>
         }
       </tbody>

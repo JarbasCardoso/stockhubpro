@@ -21,18 +21,23 @@ export class CadastrarItem {
   codigo = '';
   preco = '';
   qtdMinima = '';
+  categoria = '';
   sucesso = false;
 
   cadastrar() {
     if (this.nome && this.codigo && this.preco && this.qtdMinima) {
-      this.estoqueService.adicionarItem({
+      this.sucesso = true;
+      const adicionado = this.estoqueService.adicionarItem({
         nome: this.nome,
         codigo: this.codigo,
-        categoria: 'Geral',
+        categoria: this.categoria,
         qtdAtual: 0,
-        qtdMinima: Number(this.qtdMinima)
+        qtdMinima: Number(this.qtdMinima)     
       });
-      this.sucesso = true;
+      this.sucesso = adicionado;
+      if (!adicionado){
+        alert('Código já cadastrado.')
+      }
       setTimeout(() => this.sucesso = false, 3000);
       this.apagar();
     }
@@ -43,6 +48,7 @@ export class CadastrarItem {
     this.codigo = '';
     this.preco = '';
     this.qtdMinima = '';
+    this.categoria = '';
   }
 
   voltar() {

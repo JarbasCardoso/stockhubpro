@@ -33,6 +33,10 @@ export class Cadastro {
 
     if (!cnpjValido) { this.mostrarErroCnpj = true; return; }
     if (cnpjValido && cpfValido && senhaValida && senhasIguais) {
+      localStorage.setItem('empresa', this.nomeEmpresa);
+      localStorage.setItem('nome', this.nomeUsuario);
+      localStorage.setItem('cpf', this.cpf);
+      localStorage.setItem('email', this.email);
       this.mostrarSucesso = true;
     }
   }

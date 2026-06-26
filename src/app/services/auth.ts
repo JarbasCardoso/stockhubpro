@@ -12,6 +12,7 @@ export class AuthService {
     const senhaValida = senha.length >= 8;
     if (cpfValido && senhaValida) {
       localStorage.setItem('logado', 'true');
+      localStorage.setItem('cpf', cpf);
       return true;
     }
     return false;

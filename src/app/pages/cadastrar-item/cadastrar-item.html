@@ -46,6 +46,19 @@
       </div>
     </div>
 
+    <div class="mb-3 row align-items-center">
+      <label class="col-sm-4 col-form-label">Categoria:</label>
+        <div class="col-sm-8">
+          <select class="form-control" [(ngModel)]="categoria">
+            <option value="">Selecione...</option>
+            <option value="Eletrônicos">Eletrônicos</option>
+            <option value="Informática">Informática</option>
+            <option value="Papelaria">Papelaria</option>
+            <option value="Geral">Geral</option>
+          </select>
+        </div>
+    </div>
+
     <!-- BOTÕES -->
     <div class="d-flex justify-content-center gap-3 mt-3">
       <button type="button" class="btn btn-danger px-4" (click)="apagar()">

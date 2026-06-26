@@ -33,7 +33,7 @@ export class Estoque {
 
   excluir(index: number) {
   const item = this.itensFiltrados[index];
-  this.estoqueService.itens = this.estoqueService.itens.filter(i => i.codigo !== item.codigo);
+  this.estoqueService.removerItem(item.codigo);
   this.mostrarExcluido = true;
 }
 
@@ -41,5 +41,5 @@ export class Estoque {
     this.mostrarEditado = true;
   }
 
-  voltar() { this.router.navigate(['/']); }
+  voltar() { this.router.navigate(['/home-interno']); }
 }

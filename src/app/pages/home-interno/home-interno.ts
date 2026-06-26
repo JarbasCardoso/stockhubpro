@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Footer } from '../../shared/footer/footer';
+import { EstoqueService } from '../../services/estoque';
 
 @Component({
   selector: 'app-home-interno',
@@ -13,16 +14,18 @@ import { Footer } from '../../shared/footer/footer';
 export class HomeInterno {
   private router = inject(Router);
 
+  private estoqueService = inject(EstoqueService);
+
   mostrarPerfil = false;
 
-  empresa = 'StockHub Ltda';
-  nome = 'Administrador';
-  cpf = '12345678901';
-  email = 'admin@stockhub.com';
+  empresa = localStorage.getItem('empresa') || '';
+  nome = localStorage.getItem('nome') || '';
+  cpf = localStorage.getItem('cpf') || '';
+  email = localStorage.getItem('email') || '';
 
-  totalItens = 28;
-  totalEntradas = 2000;
-  totalSaidas = 988;
+  get totalItens(){
+    return this.estoqueService.getItens().length;
+  }
 
   abrirPerfil() { this.mostrarPerfil = true; }
   fecharPerfil() { this.mostrarPerfil = false; }
