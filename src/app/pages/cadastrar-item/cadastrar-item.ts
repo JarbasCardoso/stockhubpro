@@ -31,7 +31,7 @@ export class CadastrarItem {
         nome: this.nome,
         codigo: this.codigo,
         categoria: this.categoria,
-        qtdAtual: 0,
+        qtdAtual: Number(this.qtdMinima),
         qtdMinima: Number(this.qtdMinima)     
       });
       this.sucesso = adicionado;
