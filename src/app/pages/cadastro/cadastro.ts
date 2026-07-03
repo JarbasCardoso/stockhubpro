@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Footer } from '../../shared/footer/footer';
+import { AuthService } from '../../services/auth'; // Importamos o serviço de autenticação
 
 @Component({
   selector: 'app-cadastro',
@@ -11,7 +12,9 @@ import { Footer } from '../../shared/footer/footer';
   styleUrl: './cadastro.css'
 })
 export class Cadastro {
+  // Injeções de dependência ficam bem no início da classe
   private router = inject(Router);
+  private authService = inject(AuthService); // A variável fica exatamente aqui!
 
   nomeEmpresa = '';
   cnpj = '';
@@ -32,12 +35,29 @@ export class Cadastro {
     const senhasIguais = this.senha === this.confirmarSenha;
 
     if (!cnpjValido) { this.mostrarErroCnpj = true; return; }
+    
     if (cnpjValido && cpfValido && senhaValida && senhasIguais) {
-      localStorage.setItem('empresa', this.nomeEmpresa);
-      localStorage.setItem('nome', this.nomeUsuario);
-      localStorage.setItem('cpf', this.cpf);
-      localStorage.setItem('email', this.email);
-      this.mostrarSucesso = true;
+      
+      // Monta o objeto no formato exato que a tabela Usuários do HeidiSQL exige
+      const novoUsuario = {
+        usuarioNome: this.nomeUsuario,
+        empresaNome: this.nomeEmpresa,
+        usuarioEmail: this.email,
+        usuarioCpf: this.cpf,
+        usuarioSenha: this.senha,
+        usuarioStatus: 1
+      };
+
+      // Dispara o POST real para a API do Senac usando o serviço injetado
+      this.authService.cadastrarUsuario(novoUsuario).subscribe({
+        next: () => {
+          this.mostrarSucesso = true;
+        },
+        error: (err) => {
+          console.error(err);
+          alert('Erro ao registrar usuário no banco de dados. Verifique se o CPF já existe.');
+        }
+      });
     }
   }
 

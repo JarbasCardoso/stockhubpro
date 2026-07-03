@@ -23,8 +23,14 @@ export class HomeInterno {
   cpf = localStorage.getItem('cpf') || '';
   email = localStorage.getItem('email') || '';
 
-  get totalItens(){
-    return this.estoqueService.getItens().length;
+  totalItens = 0;
+
+  // Substitua o bloco antigo por este método que roda ao iniciar:
+  constructor() {
+    this.estoqueService.getItens().subscribe({
+      next: (produtos) => this.totalItens = produtos.length,
+      error: (err) => console.error(err)
+    });
   }
 
   abrirPerfil() { this.mostrarPerfil = true; }

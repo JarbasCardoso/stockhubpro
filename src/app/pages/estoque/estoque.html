@@ -20,34 +20,34 @@
   <header class="border-bottom py-2 px-4 d-flex align-items-center justify-content-between bg-white">
     <h5 class="text-primary fw-bold mb-0">StockHub Pro</h5>
     <h6 class="mb-0 fw-bold">ESTOQUE</h6>
-    <button class="javascript:void(0)" (click)="voltar()">Voltar para o início</button>
+    <button class="btn btn-link p-0 text-decoration-none" (click)="voltar()">Voltar para o início</button>
   </header>
 
   <!-- CONTEÚDO -->
   <div class="flex-grow-1 container py-4">
 
     <div class="d-flex align-items-center mb-3">
-      <span class="me-2">Total de itens:</span>
+      <span class="me-2">Total de itens no estoque:</span>
       <input type="text" class="form-control w-auto" [value]="totalItens" readonly style="max-width:100px;">
     </div>
 
     <div class="input-group mb-4" style="max-width:400px;">
-      <span class="input-group-text"></span>
+      <span class="input-group-text">🔍</span>
       <input type="text" class="form-control" placeholder="BUSCAR ITEM" [(ngModel)]="busca">
     </div>
 
-    @for (item of itensFiltrados; track item.codigo; let i = $index) {
+    <!-- LOOP ADAPTADO: Varre a lista filtrada mapeando as chaves corretas do banco -->
+    @for (item of itensFiltrados; track item.produtoId; let i = $index) {
     <div class="card mb-3 border" style="border-color:#4a90d9 !important;">
       <div class="card-body">
-        <p><strong>Nome:</strong> {{ item.nome }}</p>
-        <p><strong>Código:</strong> {{ item.codigo }}</p>
-        <p><strong>Categoria:</strong> {{ item.categoria }}</p>
-        <p><strong>Quantidade atual:</strong> {{ item.qtdAtual }}</p>
-        <p><strong>Quantidade Mínima:</strong> {{ item.qtdMinima }}</p>
+        <p><strong>Nome:</strong> {{ item.produtoNome }}</p>
+        <p><strong>Código do Produto:</strong> {{ item.produtoCodigo }}</p>
+        <p><strong>Quantidade Atual:</strong> {{ item.produtoQuantidade }}</p>
+        <p><strong>Preço:</strong> R$ {{ item.produtoPreco | number:'1.2-2' }}</p>
       </div>
       <div class="card-footer d-flex justify-content-end gap-2">
-       <button class="btn btn-warning btn-sm" (click)="editar(i)">EDITAR </button>
-       <button class="btn btn-danger btn-sm" (click)="excluir(i)">EXCLUIR </button>
+        <button class="btn btn-warning btn-sm" (click)="editar(i)">EDITAR</button>
+        <button class="btn btn-danger btn-sm" (click)="excluir(i)">EXCLUIR</button>
       </div>
     </div>
     }

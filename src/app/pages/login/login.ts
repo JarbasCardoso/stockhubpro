@@ -20,11 +20,20 @@ export class LoginComponent {
   mostrarErro = false;
 
   entrar() {
-    if (this.authService.login(this.cpf, this.senha)) {
-      this.router.navigate(['/home-interno']);
-    } else {
-      this.mostrarErro = true;
-    }
+    // Chama o serviço passando os dados digitados e se inscreve para receber a resposta
+    this.authService.login(this.cpf, this.senha).subscribe({
+      next: (sucessoLogin) => {
+        if (sucessoLogin) {
+          this.router.navigate(['/home-interno']); // Entra no sistema
+        } else {
+          this.mostrarErro = true; // Exibe o alerta de dados inválidos
+        }
+      },
+      error: (err) => {
+        console.error(err);
+        alert('Erro ao tentar conectar com o servidor de autenticação.');
+      }
+    });
   }
 
   fecharErro() { this.mostrarErro = false; }

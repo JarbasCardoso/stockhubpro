@@ -2,29 +2,32 @@
   <div class="flex-grow-1 p-4">
     <h4 class="text-center mb-4">Relatório Mensal de Estoque</h4>
 
-    <table class="table table-bordered table-striped">
-      <thead>
+    <table class="table table-bordered table-striped bg-white shadow-sm">
+      <thead class="table-primary">
+        <tr>
           <th>Código</th>
           <th>Nome</th>
-          <th>Categoria</th>
-          <th>Qauntidade Atual</th>
-          <th>Qauntidade Mínima</th>
+          <th>Quantidade Atual</th>
+          <th>Preço</th>
+          <th>Data de Validade</th>
+        </tr>
       </thead>
       <tbody>
-        @for (item of itens; track item.codigo) {
+        <!-- O loop desempacota o Observable e lê o produtoId como chave de rastreio -->
+        @for (item of (itens | async); track item.produtoId) {
           <tr>
-            <td>{{ item.codigo }}</td>
-            <td>{{ item.nome }}</td>
-            <td>{{ item.categoria }}</td>
-            <td>{{ item.qtdAtual }}</td>
-            <td>{{ item.qtdMinima }}</td>
+            <td>{{ item.produtoCodigo }}</td>
+            <td>{{ item.produtoNome }}</td>
+            <td>{{ item.produtoQuantidade }}</td>
+            <td>R$ {{ item.produtoPreco | number:'1.2-2' }}</td>
+            <td>{{ item.produtoDataValidade }}</td>
           </tr>
         }
       </tbody>
     </table>
 
     <div class="text-center mt-3">
-      <button type="button" class="btn btn-secondary" (click)="voltar()">Voltar</button>
+      <button type="button" class="btn btn-secondary px-4" (click)="voltar()">Voltar</button>
     </div>
   </div>
   <app-footer />

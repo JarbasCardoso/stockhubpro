@@ -39,24 +39,12 @@
       </div>
     </div>
 
+    <!-- CAMPO CORRIGIDO: Vinculado com a variável qtdAtual do seu TS -->
     <div class="mb-3 row align-items-center">
-      <label class="col-sm-4 col-form-label">Quantidade Mínima:</label>
+      <label class="col-sm-4 col-form-label">Quantidade em Estoque:</label>
       <div class="col-sm-8">
-        <input type="number" class="form-control" [(ngModel)]="qtdMinima" />
+        <input type="number" class="form-control" [(ngModel)]="qtdAtual" />
       </div>
-    </div>
-
-    <div class="mb-3 row align-items-center">
-      <label class="col-sm-4 col-form-label">Categoria:</label>
-        <div class="col-sm-8">
-          <select class="form-control" [(ngModel)]="categoria">
-            <option value="">Selecione...</option>
-            <option value="Eletrônicos">Eletrônicos</option>
-            <option value="Informática">Informática</option>
-            <option value="Papelaria">Papelaria</option>
-            <option value="Geral">Geral</option>
-          </select>
-        </div>
     </div>
 
     <!-- BOTÕES -->
