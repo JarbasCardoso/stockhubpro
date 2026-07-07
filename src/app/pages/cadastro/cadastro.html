@@ -55,7 +55,7 @@
         <label class="form-label">Senha</label>
         <div class="input-group">
           <input [type]="mostrarSenha ? 'text' : 'password'" class="form-control" [(ngModel)]="senha">
-          <button class="btn btn-outline-secondary" (click)="toggleSenha()"></button>
+          <button class="btn btn-outline-secondary" (click)="toggleSenha()">👁️</button>
         </div>
         <small class="text-muted">(Deve conter 8 caracteres, com pelo menos uma letra maiúscula)</small>
       </div>
@@ -64,7 +64,7 @@
         <label class="form-label">Confirmar senha*</label>
         <div class="input-group">
           <input [type]="mostrarConfirmar ? 'text' : 'password'" class="form-control" [(ngModel)]="confirmarSenha">
-          <button class="btn btn-outline-secondary" (click)="toggleConfirmar()"></button>
+          <button class="btn btn-outline-secondary" (click)="toggleConfirmar()">👁️</button>
         </div>
       </div>
 
