@@ -1,21 +1,30 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule, AsyncPipe } from '@angular/common'; // Adicionado o AsyncPipe aqui
+import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule, AsyncPipe } from '@angular/common'; 
 import { Router } from '@angular/router';
 import { Footer } from '../../shared/footer/footer';
-import { EstoqueService } from '../../services/estoque';
+import { EstoqueService } from '../../services/estoque'; // Mantido o caminho original que funciona!
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-relatorio',
   standalone: true,
-  imports: [CommonModule, Footer, AsyncPipe], // Colocado o AsyncPipe aqui
+  imports: [CommonModule, Footer, AsyncPipe], 
   templateUrl: './relatorio.html'
 })
-export class Relatorio {
+export class Relatorio implements OnInit {
   private router = inject(Router);
   private estoqueService = inject(EstoqueService);
 
-  get itens() {
-    return this.estoqueService.getItens();
+  itens$!: Observable<any[]>;
+
+  ngOnInit() {
+    this.itens$ = this.estoqueService.getItens();
+    
+    // Esse subscribe serve apenas para vocês verem os dados chegando no F12 do navegador
+    this.estoqueService.getItens().subscribe({
+      next: (dados: any) => console.log('Dados no Relatório:', dados),
+      error: (err) => console.error('Erro ao carregar relatório:', err)
+    });
   }
 
   voltar() {

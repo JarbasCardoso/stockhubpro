@@ -13,8 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- O loop desempacota o Observable e lê o produtoId como chave de rastreio -->
-        @for (item of (itens | async); track item.produtoId) {
+        @for (item of (itens$ | async); track item.produtoId) {
           <tr>
             <td>{{ item.produtoCodigo }}</td>
             <td>{{ item.produtoNome }}</td>
